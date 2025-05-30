@@ -142,7 +142,9 @@
         class="alert"
       >
         <div *ngIf="passport.errors?.['required']">Это обязательное поле</div>
-        <div *ngIf="passport.errors?.['lengthValidator']">
+        <div
+          *ngIf="(!passport.errors?.['required'])&&(passport.errors?.['lengthValidator'])"
+        >
           Формат XXXX XXXXXX, где X — цифры
         </div>
       </div>

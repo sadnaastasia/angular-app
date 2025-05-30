@@ -110,7 +110,9 @@
         class="alert"
       >
         <div *ngIf="postalCode.errors?.['required']">Это обязательное поле</div>
-        <div *ngIf="postalCode.errors?.['lengthValidator']">
+        <div
+          *ngIf="(!postalCode.errors?.['required'])&&(postalCode.errors?.['lengthValidator'])"
+        >
           Почтовый индекс должен состоять из 6 цифр
         </div>
       </div>

@@ -42,7 +42,7 @@
             Это обязательное поле
           </div>
           <div
-            *ngIf="fields.controls[i].get('documentNumber').errors?.['lengthValidator']"
+            *ngIf="(!fields.controls[i].get('documentNumber').errors?.['required'])&&(fields.controls[i].get('documentNumber').errors?.['lengthValidator'])"
           >
             Неправильный формат документа
           </div>

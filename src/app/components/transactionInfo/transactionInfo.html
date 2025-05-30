@@ -32,7 +32,9 @@
         <div *ngIf="transactionSum.errors?.['required']">
           Это обязательное поле
         </div>
-        <div *ngIf="transactionSum.errors?.['minSumValidator']">
+        <div
+          *ngIf="(!transactionSum.errors?.['required'])&&(transactionSum.errors?.['minSumValidator'])"
+        >
           Сумма транзакции должна быть больше 0
         </div>
       </div>

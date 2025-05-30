@@ -20,7 +20,9 @@
         <div *ngIf="accountNumber.errors?.['required']">
           Это обязательное поле
         </div>
-        <div *ngIf="accountNumber.errors?.['lengthValidator']">
+        <div
+          *ngIf="(!accountNumber.errors?.['required'])&&(accountNumber.errors?.['lengthValidator'])"
+        >
           Номер счета должен состоять из 20 цифр
         </div>
       </div>
@@ -33,7 +35,9 @@
       />
       <div *ngIf="bic.invalid && (bic.dirty || bic.touched)" class="alert">
         <div *ngIf="bic.errors?.['required']">Это обязательное поле</div>
-        <div *ngIf="bic.errors?.['lengthValidator']">
+        <div
+          *ngIf="(!bic.errors?.['required'])&&(bic.errors?.['lengthValidator'])"
+        >
           БИК должен состоять из 9 цифр
         </div>
       </div>
@@ -49,7 +53,9 @@
         class="alert"
       >
         <div *ngIf="bankName.errors?.['required']">Это обязательное поле</div>
-        <div *ngIf="bankName.errors?.['minLengthValidator']">
+        <div
+          *ngIf="(!bankName.errors?.['required'])&&(bankName.errors?.['minLengthValidator'])"
+        >
           Наименование банка должно иметь минимум 3 символа
         </div>
       </div>
@@ -67,7 +73,9 @@
         <div *ngIf="correspondentAccount.errors?.['required']">
           Это обязательное поле
         </div>
-        <div *ngIf="correspondentAccount.errors?.['lengthValidator']">
+        <div
+          *ngIf="(!correspondentAccount.errors?.['required'])&&(correspondentAccount.errors?.['lengthValidator'])"
+        >
           Корреспондентский счет должен состоять из 20 цифр
         </div>
       </div>

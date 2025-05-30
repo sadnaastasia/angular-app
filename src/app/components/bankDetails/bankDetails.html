@@ -15,7 +15,7 @@
       />
       <div
         *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)"
-        class="inputData alert"
+        class="alert"
       >
         <div *ngIf="accountNumber.errors?.['required']">
           Это обязательное поле

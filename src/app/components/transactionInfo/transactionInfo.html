@@ -1,0 +1,67 @@
+<ng-container [formGroup]="parentFormGroup"
+  ><fieldset
+    formGroupName="transactionInfo"
+    id="transactionInfo"
+    class="fieldsetContainer"
+  >
+    <legend class="fieldsetText">Информация о транзакции</legend>
+    <div class="inputContainer">
+      <label for="transaction-type">Тип транзакции</label>
+      <select
+        name="transaction"
+        id="transaction-type"
+        formControlName="transactionType"
+        class="noneGreen, inputData"
+      >
+        <option value="">Укажите тип транзакции</option>
+        <option value="transfer">Перевод</option>
+        <option value="payment">Оплата</option>
+        <option value="replenishment">Пополнение</option>
+      </select>
+      <label for="transaction-sum">Сумма транзакции </label>
+      <input
+        type="number"
+        id="transaction-sum"
+        formControlName="transactionSum"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="transactionSum.invalid && (transactionSum.dirty || transactionSum.touched)"
+        class="alert"
+      >
+        <div *ngIf="transactionSum.errors?.['required']">
+          Это обязательное поле
+        </div>
+        <div *ngIf="transactionSum.errors?.['minSumValidator']">
+          Сумма транзакции должна быть больше 0
+        </div>
+      </div>
+      <label for="currency">Валюта</label>
+      <select
+        name="currency"
+        id="currency"
+        formControlName="currency"
+        class="noneGreen, inputData"
+      >
+        <option value="">Выберите валюту</option>
+        <option value="RUB">RUB</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+      <label for="comments">Комментарий</label>
+      <textarea
+        id="comments"
+        formControlName="comments"
+        class="noneGreen, inputData"
+      ></textarea>
+      <div
+        *ngIf="comments.invalid && (comments.dirty || comments.touched)"
+        class="alert"
+      >
+        <div *ngIf="comments.errors?.['maxlength']">
+          Максимально количество символов 200
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</ng-container>

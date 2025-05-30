@@ -1,0 +1,76 @@
+<ng-container [formGroup]="parentFormGroup"
+  ><fieldset
+    formGroupName="bankDetails"
+    id="bankDetails"
+    class="fieldsetContainer"
+  >
+    <legend class="fieldsetText">Банковские реквизиты</legend>
+    <div class="inputContainer">
+      <label for="account-number">Номер счета</label>
+      <input
+        type="text"
+        id="account-number"
+        formControlName="accountNumber"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)"
+        class="inputData alert"
+      >
+        <div *ngIf="accountNumber.errors?.['required']">
+          Это обязательное поле
+        </div>
+        <div *ngIf="accountNumber.errors?.['lengthValidator']">
+          Номер счета должен состоять из 20 цифр
+        </div>
+      </div>
+      <label for="bic">БИК банка</label>
+      <input
+        type="text"
+        id="bic"
+        formControlName="bic"
+        class="noneGreen, inputData"
+      />
+      <div *ngIf="bic.invalid && (bic.dirty || bic.touched)" class="alert">
+        <div *ngIf="bic.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="bic.errors?.['lengthValidator']">
+          БИК должен состоять из 9 цифр
+        </div>
+      </div>
+      <label for="bank-name">Наименование банка</label>
+      <input
+        type="text"
+        id="bank-name"
+        formControlName="bankName"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)"
+        class="alert"
+      >
+        <div *ngIf="bankName.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="bankName.errors?.['minLengthValidator']">
+          Наименование банка должно иметь минимум 3 символа
+        </div>
+      </div>
+      <label for="correspondent-account">Корреспондентский счет</label>
+      <input
+        type="text"
+        id="correspondent-account"
+        formControlName="correspondentAccount"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="correspondentAccount.invalid && (correspondentAccount.dirty || correspondentAccount.touched)"
+        class="alert"
+      >
+        <div *ngIf="correspondentAccount.errors?.['required']">
+          Это обязательное поле
+        </div>
+        <div *ngIf="correspondentAccount.errors?.['lengthValidator']">
+          Корреспондентский счет должен состоять из 20 цифр
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</ng-container>

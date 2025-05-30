@@ -1,0 +1,119 @@
+<ng-container [formGroup]="parentFormGroup">
+  <fieldset formGroupName="address" id="address" class="fieldsetContainer">
+    <legend class="fieldsetText">Адрес регистрации</legend>
+    <div class="inputContainer">
+      <label for="country">Страна</label>
+      <select
+        id="country"
+        formControlName="country"
+        class="noneGreen, inputData"
+      >
+        <option value="">Выберите страну</option>
+        @for(country of countries; track $index) {
+        <option value="country.iso_code2">{{ country.name_ru }}</option>
+        }
+        <option *ngFor="let country of countries" value="country.iso_code2">
+          {{ country.name_ru }}
+        </option>
+      </select>
+      <div
+        *ngIf="country.invalid && (country.dirty || country.touched)"
+        class="alert"
+      >
+        <div *ngIf="country.errors?.['required']">Это обязательное поле</div>
+      </div>
+      <label for="region">Регион</label>
+      <input
+        type="text"
+        id="region"
+        formControlName="region"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="region.invalid && (region.dirty || region.touched)"
+        class="alert"
+      >
+        <div *ngIf="region.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="region.errors?.['minlength']">
+          Название региона должно иметь больше 2 символов
+        </div>
+      </div>
+      <label for="city">Город</label>
+      <input
+        type="text"
+        id="city"
+        formControlName="city"
+        class="noneGreen, inputData"
+      />
+      <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert">
+        <div *ngIf="city.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="city.errors?.['minlength']">
+          Название города должно иметь больше 2 символов
+        </div>
+      </div>
+      <label for="street">Улица</label>
+      <input
+        type="text"
+        id="street"
+        formControlName="street"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="street.invalid && (street.dirty || street.touched)"
+        class="alert"
+      >
+        <div *ngIf="street.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="street.errors?.['minlength']">
+          Название улицы должно иметь больше 2 символов
+        </div>
+      </div>
+      <label for="house">Дом</label>
+      <input
+        type="text"
+        id="house"
+        formControlName="house"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="house.invalid && (house.dirty || house.touched)"
+        class="alert"
+      >
+        <div *ngIf="house.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="house.errors?.['minlength']">
+          Номер дома должен иметь больше 1 символа
+        </div>
+      </div>
+      <label for="apartment">Квартира</label>
+      <input
+        type="text"
+        id="apartment"
+        formControlName="apartment"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="apartment.invalid && (apartment.dirty || apartment.touched)"
+        class="alert"
+      >
+        <div *ngIf="apartment.errors?.['pattern']">
+          Номер квартиры должен состоять только из цифр
+        </div>
+      </div>
+      <label for="postalCode">Индекс</label>
+      <input
+        type="text"
+        id="postalCode"
+        formControlName="postalCode"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)"
+        class="alert"
+      >
+        <div *ngIf="postalCode.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="postalCode.errors?.['lengthValidator']">
+          Почтовый индекс должен состоять из 6 цифр
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</ng-container>

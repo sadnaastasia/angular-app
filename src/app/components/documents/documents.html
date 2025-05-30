@@ -1,0 +1,86 @@
+<ng-container [formGroup]="parentFormGroup"
+  ><fieldset
+    formGroupName="dynamicForm"
+    id="dynamicForm"
+    class="fieldsetContainer"
+  >
+    <legend class="fieldsetText">Дополнительные документы</legend>
+    <div formArrayName="fields" id="formArray" class="inputContainer">
+      <div
+        id="formArrayField"
+        *ngFor="let field of fields.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <label for="document-type">Тип документа</label>
+        <select
+          name="document-type"
+          id="document-type"
+          formControlName="documentType"
+          class="noneGreen, inputData"
+          (change)="onChange(i)"
+        >
+          <option value="">Укажите тип документа</option>
+          <option value="passport">Паспорт</option>
+          <option value="SNILS">СНИЛС</option>
+          <option value="INT">ИНН</option>
+        </select>
+        <label for="document-number">Номер документа</label>
+        <input
+          type="text"
+          id="document-number"
+          formControlName="documentNumber"
+          class="noneGreen"
+          style="width: 100%; height: 40px; margin-bottom: 2rem"
+        />
+        <div
+          *ngIf="fields.controls[i].get('documentNumber').invalid && (fields.controls[i].get('documentNumber').dirty || fields.controls[i].get('documentNumber').touched)"
+          class="alert"
+        >
+          <div
+            *ngIf="fields.controls[i].get('documentNumber').errors?.['required']"
+          >
+            Это обязательное поле
+          </div>
+          <div
+            *ngIf="fields.controls[i].get('documentNumber').errors?.['lengthValidator']"
+          >
+            Неправильный формат документа
+          </div>
+        </div>
+        <label for="issue-date">Дата выдачи</label>
+        <input
+          type="date"
+          id="issue-date"
+          name="issue-date"
+          formControlName="issueDate"
+          class="noneGreen"
+          style="width: 100%; height: 40px; margin-bottom: 2rem"
+        />
+        <div
+          *ngIf="fields.controls[i].get('issueDate').invalid && (fields.controls[i].get('issueDate').dirty || fields.controls[i].get('issueDate').touched)"
+          class="alert"
+        >
+          <div *ngIf="fields.controls[i].get('issueDate').errors?.['required']">
+            Это обязательное поле
+          </div>
+        </div>
+        <button
+          type="button"
+          class="buttonNegative"
+          style="margin-bottom: 2rem"
+          (click)="removeField(i)"
+        >
+          Удалить
+        </button>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="buttonPositive"
+      style="margin-bottom: 1.5rem"
+      (click)="addField()"
+    >
+      Добавить
+    </button>
+  </fieldset>
+</ng-container>

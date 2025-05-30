@@ -1,0 +1,151 @@
+<ng-container [formGroup]="parentFormGroup"
+  ><fieldset
+    formGroupName="clientInfo"
+    id="clientInfo"
+    class="fieldsetContainer"
+  >
+    <legend class="fieldsetText">Данные клиента</legend>
+    <div class="inputContainer">
+      <label for="firstName">Имя</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        formControlName="firstName"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+        class="inputData, alert"
+      >
+        <div *ngIf="firstName.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="firstName.errors?.['minlength']">
+          Имя должно иметь больше 1 буквы
+        </div>
+        <div *ngIf="firstName.errors?.['maxlength']">
+          Имя должно иметь меньше 51 буквы
+        </div>
+      </div>
+      <label for="lastName">Фамилия</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        formControlName="lastName"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+        class="alert"
+      >
+        <div *ngIf="lastName.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="lastName.errors?.['minlength']">
+          Фамилия должна иметь больше 1 буквы
+        </div>
+        <div *ngIf="lastName.errors?.['maxlength']">
+          Фамилия должна иметь меньше 51 буквы
+        </div>
+      </div>
+      <label for="middleName">Отчество</label>
+      <input
+        type="text"
+        name="middleName"
+        id="middleName"
+        formControlName="middleName"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="middleName.invalid && (lastName.dirty || lastName.touched)"
+        class="alert"
+      >
+        <div *ngIf="middleName.errors?.['minlength']">
+          Отчество должно иметь больше 1 буквы
+        </div>
+        <div *ngIf="middleName.errors?.['maxlength']">
+          Отчество должно иметь меньше 51 буквы
+        </div>
+      </div>
+      <label for="gender-select">Пол</label>
+      <select
+        name="gender"
+        id="gender-select"
+        formControlName="gender"
+        class="noneGreen, inputData"
+      >
+        <option value="">Укажите пол</option>
+        <option value="female">Женский</option>
+        <option value="male">Мужской</option>
+      </select>
+      <label for="birthDate">Дата рождения</label>
+      <input
+        type="date"
+        name="birthDate"
+        id="birthDate"
+        formControlName="birthDate"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)"
+        class="alert"
+      >
+        <div *ngIf="birthDate.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="birthDate.errors?.['dateValidator']">
+          Вам должно быть больше 18 лет
+        </div>
+      </div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        formControlName="email"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert"
+      >
+        <div *ngIf="email.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="email.errors?.['email']">
+          Email должен иметь вид john.doe&#64;example.com
+        </div>
+      </div>
+      <label for="phone">Телефон</label>
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        placeholder="+7 (___) ___-__-__"
+        formControlName="phone"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+        class="alert"
+      >
+        <div *ngIf="phone.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="phone.errors?.['phoneNumberValidator']">
+          Формат +7 (XXX) XXX-XX-XX
+        </div>
+      </div>
+      <label for="passport">Серия и номер паспорта</label>
+      <input
+        type="text"
+        name="passport"
+        id="passport"
+        placeholder="XXXX XXXXXX"
+        formControlName="passport"
+        class="noneGreen, inputData"
+      />
+      <div
+        *ngIf="passport.invalid && (passport.dirty || passport.touched)"
+        class="alert"
+      >
+        <div *ngIf="passport.errors?.['required']">Это обязательное поле</div>
+        <div *ngIf="passport.errors?.['lengthValidator']">
+          Формат XXXX XXXXXX, где X — цифры
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</ng-container>
